@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Generator</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 50px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #fff;
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            color: #000;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #2575fc;
+            border-color: #2575fc;
+            width: 100%;
+        }
+        .certificate {
+            border: 2px solid #000;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            background-color: #fff;
+            color: #000;
+        }
+        .certificate-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #6a11cb;
+        }
+        .certificate-body {
+            margin-top: 20px;
+        }
+        .certificate-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .certificate-university,
+        .certificate-course {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        .certificate-footer {
+            margin-top: 30px;
+        }
+        .kiit-logo {
+            max-width: 100px;
+            margin-bottom: 20px;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Certificate Generator</h2>
+        <form id="certificateForm">
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="university">University:</label>
+                <input type="text" class="form-control" id="university" name="university" required>
+            </div>
+            <div class="form-group">
+                <label for="course">Course:</label>
+                <input type="text" class="form-control" id="course" name="course" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Generate Certificate</button>
+        </form>
+
+        <div id="certificate" class="certificate d-none">
+            <img src="https://ilogo.in/ajax/thumbnail.php?id=200854&width=540&height=540&face=front&force=1" alt="KIIT Logo" class="kiit-logo">
+            <div class="certificate-title">Certificate of Achievement</div>
+            <div class="certificate-body">
+                This is to certify that
+                <div class="certificate-name" id="certificateName"></div>
+                from
+                <div class="certificate-university" id="certificateUniversity"></div>
+                has successfully completed the course
+                <div class="certificate-course" id="certificateCourse"></div>.
+            </div>
+            <div class="certificate-footer">
+                <div>Date: <span id="certificateDate"></span></div>
+                <div>Signature: __________________</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Certificate Generator. All rights reserved.</p>
+    </div>
+
+    <script>
+        document.getElementById('certificateForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const university = document.getElementById('university').value;
+            const course = document.getElementById('course').value;
+            document.getElementById('certificateName').innerText = firstName + ' ' + lastName;
+            document.getElementById('certificateUniversity').innerText = university;
+            document.getElementById('certificateCourse').innerText = course;
+            document.getElementById('certificateDate').innerText = new Date().toLocaleDateString();
+            document.getElementById('certificate').classList.remove('d-none');
+        });
+    </script>
+</body>
+</html>
